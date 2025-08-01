@@ -1,5 +1,3 @@
-// calculator_frontend.js
-
 function getInputs() {
   const a = parseFloat(document.getElementById('num1').value);
   const b = parseFloat(document.getElementById('num2').value);
@@ -14,7 +12,6 @@ function add() {
   const { a, b } = getInputs();
   displayResult(window.calculator.add(a, b));
 }
-
 function subtract() {
   const { a, b } = getInputs();
   displayResult(window.calculator.subtract(a, b));
