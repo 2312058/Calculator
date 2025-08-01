@@ -1,61 +1,31 @@
+// calculator_frontend.js
 
-import { calculate } from './calculator_backend.js';
-
-const display = document.querySelector('.display');
-let currentInput = '';
-let previousInput = '';
-let operator = '';
-
-function updateDisplay(value) {
-  display.textContent = value;
+function getInputs() {
+  const a = parseFloat(document.getElementById('num1').value);
+  const b = parseFloat(document.getElementById('num2').value);
+  return { a, b };
 }
 
-function handleNumber(num) {
-  currentInput += num;
-  updateDisplay(currentInput);
+function displayResult(result) {
+  document.getElementById('result').textContent = `Result: ${result}`;
 }
 
-function handleOperator(op) {
-  if (currentInput === '') return;
-  if (previousInput !== '') {
-    currentInput = calculate(previousInput, currentInput, operator).toString();
-    updateDisplay(currentInput);
-  }
-  operator = op;
-  previousInput = currentInput;
-  currentInput = '';
+function add() {
+  const { a, b } = getInputs();
+  displayResult(window.calculator.add(a, b));
 }
 
-function handleEquals() {
-  if (previousInput === '' || currentInput === '') return;
-  const result = calculate(previousInput, currentInput, operator);
-  updateDisplay(result);
-  currentInput = result.toString();
-  previousInput = '';
-  operator = '';
+function subtract() {
+  const { a, b } = getInputs();
+  displayResult(window.calculator.subtract(a, b));
 }
 
-function handleClear() {
-  currentInput = '';
-  previousInput = '';
-  operator = '';
-  updateDisplay('0');
+function multiply() {
+  const { a, b } = getInputs();
+  displayResult(window.calculator.multiply(a, b));
 }
 
-function handleDelete() {
-  currentInput = currentInput.slice(0, -1);
-  updateDisplay(currentInput || '0');
+function divide() {
+  const { a, b } = getInputs();
+  displayResult(window.calculator.divide(a, b));
 }
-
-document.querySelectorAll('.btn').forEach(button => {
-  button.addEventListener('click', () => {
-    const value = button.dataset.value;
-    if (!value) return;
-
-    if (/\d/.test(value)) handleNumber(value);
-    else if (['+', '-', '*', '/'].includes(value)) handleOperator(value);
-    else if (value === '=') handleEquals();
-    else if (value === 'C') handleClear();
-    else if (value === 'DEL') handleDelete();
-  });
-});

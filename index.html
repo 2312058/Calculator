@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Calculator</title>
+  <meta charset="UTF-8">
+  <title>Simple Calculator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>Simple Calculator</h2>
-  <input type="number" id="num1" placeholder="Number 1">
-  <input type="number" id="num2" placeholder="Number 2">
-  <button onclick="calculate()">Add</button>
-  <p id="result"></p>
-<script type="module" src="calculator_frontend.js"></script>
- 
+  <div class="calculator">
+    <h1>Calculator</h1>
+    <input type="number" id="num1" placeholder="Enter first number">
+    <input type="number" id="num2" placeholder="Enter second number">
+    
+    <div class="buttons">
+      <button onclick="add()">Add</button>
+      <button onclick="subtract()">Subtract</button>
+      <button onclick="multiply()">Multiply</button>
+      <button onclick="divide()">Divide</button>
+    </div>
+
+    <p id="result">Result will appear here</p>
+    
+    <script src="calculator_frontend.js"></script>
+  </div>
 </body>
 </html>
